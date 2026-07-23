@@ -95,7 +95,7 @@ curl -s -X POST http://localhost:8089/_llmsim/reset
 
 ## Notes
 
-- `llmsim-build:0.2.1` is pinned in the Dockerfile.
+- `llmsim-build:0.3.0` is pinned in the Dockerfile.
 - The workflow implementations are adapted from the Apache-2.0-licensed
   `spring-projects/spring-ai-examples` repository.
 - The copied application classes retain their upstream license headers.

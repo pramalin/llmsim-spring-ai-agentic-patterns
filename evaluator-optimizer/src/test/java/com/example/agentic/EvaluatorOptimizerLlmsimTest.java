@@ -60,7 +60,10 @@ class EvaluatorOptimizerLlmsimTest {
             assertThat(call.path("stepIndex").asInt()).isEqualTo(index);
             assertThat(call.path("provider").asText()).isEqualTo("openai");
             assertThat(call.path("model").asText()).isEqualTo("llmsim-demo");
-//            assertThat(call.path("streamed").asBoolean()).isFalse();
+            assertThat(call.has("streamed"))
+                    .as("journal entry should expose its response transport")
+                    .isTrue();
+            assertThat(call.path("streamed").asBoolean()).isFalse();
             assertThat(call.path("outcome").path("type").asText())
                     .isEqualTo("responded");
         }

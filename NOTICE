@@ -1,0 +1,6 @@
+This project contains source adapted from Spring AI Examples:
+Copyright 2024 the original author or authors.
+Licensed under the Apache License, Version 2.0.
+
+This project also integrates with llmsim:
+https://github.com/pramalin/llmsim

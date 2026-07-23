@@ -1,0 +1,11 @@
+name: llmsim-spring-ai-agentic-patterns
+
+services:
+  llmsim:
+    build:
+      context: ./llmsim
+    environment:
+      LLMSIM_SCRIPT: ${LLMSIM_SCRIPT:-com.example.agentic.llmsim.ChainWorkflowFlow}
+      LLMSIM_JOURNAL_MAX_ENTRIES: 100
+    ports:
+      - "${LLMSIM_PORT:-8089}:8089"

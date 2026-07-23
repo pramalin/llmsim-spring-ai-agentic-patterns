@@ -1,6 +1,7 @@
 package com.example.agentic;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.example.agentic.EvaluatorOptimizer.RefinedResponse;
+import tools.jackson.databind.JsonNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -9,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.example.agentic.EvaluatorOptimizer.RefinedResponse;
-
-import tools.jackson.databind.JsonNode;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
         classes = Application.class,
@@ -61,7 +60,7 @@ class EvaluatorOptimizerLlmsimTest {
             assertThat(call.path("provider").asText()).isEqualTo("openai");
             assertThat(call.path("model").asText()).isEqualTo("llmsim-demo");
             assertThat(call.has("streamed"))
-                    .as("journal entry should expose its response transport")
+                    .as("journal entry should expose streamed")
                     .isTrue();
             assertThat(call.path("streamed").asBoolean()).isFalse();
             assertThat(call.path("outcome").path("type").asText())

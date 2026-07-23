@@ -23,6 +23,7 @@ The tests assert both the final workflow result and the captured llmsim journal:
 - The generator receives the evaluator's feedback.
 - The refined implementation is evaluated and accepted.
 - Spring AI uses the expected provider protocol and model name.
+- Journal entries identify whether the request used streaming.
 
 ## Requirements
 
@@ -30,6 +31,7 @@ The tests assert both the final workflow result and the captured llmsim journal:
 - Maven 3.9 or later
 - Docker with Docker Compose
 - `curl`
+- llmsim 0.3.0 or later
 
 ## Run both demonstrations
 
@@ -45,23 +47,31 @@ llmsim to the evaluator-optimizer script, and runs the second test.
 Start the chain script:
 
 ```bash
-LLMSIM_SCRIPT=com.example.agentic.llmsim.ChainWorkflowFlow       docker compose up --build
+LLMSIM_SCRIPT=com.example.agentic.llmsim.ChainWorkflowFlow \
+  docker compose up --build
 ```
 
 In a second terminal:
 
 ```bash
-LLMSIM_BASE_URL=http://localhost:8089       mvn -pl chain-workflow -Dtest=ChainWorkflowLlmsimTest test
+LLMSIM_BASE_URL=http://localhost:8089 \
+  mvn -pl chain-workflow \
+  -Dtest=ChainWorkflowLlmsimTest \
+  test
 ```
 
 For evaluator-optimizer, replace the script and module:
 
 ```bash
-LLMSIM_SCRIPT=com.example.agentic.llmsim.EvaluatorOptimizerFlow       docker compose up --build
+LLMSIM_SCRIPT=com.example.agentic.llmsim.EvaluatorOptimizerFlow \
+  docker compose up --build
 ```
 
 ```bash
-LLMSIM_BASE_URL=http://localhost:8089       mvn -pl evaluator-optimizer -Dtest=EvaluatorOptimizerLlmsimTest test
+LLMSIM_BASE_URL=http://localhost:8089 \
+  mvn -pl evaluator-optimizer \
+  -Dtest=EvaluatorOptimizerLlmsimTest \
+  test
 ```
 
 ## Inspect calls

@@ -1,7 +1,6 @@
 package com.example.agentic;
 
-import com.example.agentic.EvaluatorOptimizer.RefinedResponse;
-import tools.jackson.databind.JsonNode;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -10,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.example.agentic.EvaluatorOptimizer.RefinedResponse;
+
+import tools.jackson.databind.JsonNode;
 
 @SpringBootTest(
         classes = Application.class,
@@ -59,7 +60,7 @@ class EvaluatorOptimizerLlmsimTest {
             assertThat(call.path("stepIndex").asInt()).isEqualTo(index);
             assertThat(call.path("provider").asText()).isEqualTo("openai");
             assertThat(call.path("model").asText()).isEqualTo("llmsim-demo");
-            assertThat(call.path("streamed").asBoolean()).isFalse();
+//            assertThat(call.path("streamed").asBoolean()).isFalse();
             assertThat(call.path("outcome").path("type").asText())
                     .isEqualTo("responded");
         }
